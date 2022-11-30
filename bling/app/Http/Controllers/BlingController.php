@@ -30,10 +30,22 @@ class BlingController extends Controller
     }
 
     public function getNotificationStoque(Request $request){
-        // dd(["chegou" => $request->all()]);
+        // dd("chegou");
         $class = new stdClass;
-        $class->text = 'chegou';
-        $data = Http::post('https://hooks.slack.com/services/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', $class);
+        $blocks = new stdClass;
+        $text = new stdClass;
+
+        // dd($request->all()['retorno']['estoques'][0]['estoque']);
+        $text->type = 'mrkdwn';
+        $text->text = 'Name: *' . $request->all()['retorno']['estoques'][0]['estoque']['nome'] . '*\n\n Email: *' . $request->all()['retorno']['estoques'][0]['estoque']['nome'] . '*';
+
+
+        $blocks->type = 'section';
+        $class->text = $request->all()['retorno']['estoques'][0]['estoque']['nome'];
+
+        // dd($class);
+
+        $data = Http::post('https://hooks.slack.com/services/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', $class);
         return $data;
     }
 }
