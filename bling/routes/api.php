@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/bling', [BlingController::class, 'getNotificationStoque']);
+Route::post('/bling', [BlingController::class, 'getNotificationStoque']);
 // Route::get('/bling', [BlingController::class, 'connectionBling']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
